@@ -4,7 +4,7 @@ services:
     image: 'sucwangsr/janus-webrtc-gateway-docker:1.2.3-slim'
     #command: ["/usr/local/bin/janus", "-F", "/usr/local/etc/janus"] # only start janus 
     command: ["sh", "-c", "nginx && /usr/local/bin/janus -F /usr/local/etc/janus"]  # if want to start nginx (port 8086)
-    network_mode: "host"
+    network_mode: "bridge"
     ports:
       - "8088:8088" # janus webserver
       - "8089:8089" # janus secure port
@@ -17,5 +17,6 @@ services:
       - "./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg"
       - "./conf/janus.eventhandler.sampleevh.jcfg:/usr/local/etc/janus/janus.eventhandler.sampleevh.jcfg"
       - "./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg" # for janode
+      - "./conf/janus.plugin.audiobridge.jcfg:/usr/local/etc/janus/janus.plugin.audiobridge.jcfg" # for janode
 
     restart: always
