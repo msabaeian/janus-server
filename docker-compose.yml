@@ -10,7 +10,7 @@ services:
       - "8089:8089" # janus secure port
       - "7088:7088" # admin
       - "8188:8188" # websocket
-      - "8086:8086" # nginx for demos
+      #- "8086:8086" # nginx for demos
 
     volumes:
       - "./conf/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg"  # open adminapi config
@@ -18,5 +18,6 @@ services:
       - "./conf/janus.eventhandler.sampleevh.jcfg:/usr/local/etc/janus/janus.eventhandler.sampleevh.jcfg"
       - "./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg" # for janode
       - "./conf/janus.plugin.audiobridge.jcfg:/usr/local/etc/janus/janus.plugin.audiobridge.jcfg" # for janode
+      - "/home/ubuntu/records:/root/records"
 
     restart: always
